@@ -1,5 +1,5 @@
 # YOLO_v2_Objective_Detection
-Objective Detection models based on YOLO_V2 algorithm, Keras, tensorflow backend
+Objective Detection model based on YOLO_V2 algorithm, Keras, tensorflow backend
 
 By Tianyang Zhao
 
@@ -10,13 +10,7 @@ By Tianyang Zhao
 4. Reference
 
 ## Introduction
-This repository contains the Deep Residual Network model. The goal of the model is to decipher sign language (from 0 -> 5) .
-Here are examples for each number, and how an explanation of representing the labels. These are the original pictures, before lowering the image resolutoion to 64 by 64 pixels. 
-
-![image](https://github.com/berlintofind/Multilayer-Perceptron/blob/main/images/hands.png)
-
-#### Note 
-Note that this is a subset of the SIGNS dataset. The complete dataset contains many more signs.
+This repository contains the Objective Detection model. The goal of the model is to detect and localize various objects well-defined.
 
 #### Packages Version
 1. Python 3.6.9 
@@ -29,25 +23,24 @@ Note that this is a subset of the SIGNS dataset. The complete dataset contains m
 
 ## Models
 
-The model you've just run is actually able to detect 80 different classes listed in "coco_classes.txt". To test the model on your own images，
+The model is actually able to detect 80 different classes listed in "coco_classes.txt". 
 
+It should be noted that the model load the pre-trained Keras model of YOLO_V2 which saved as "yolo.h5". These weights come from the official YOLO website, and were converted using a function written by Allan Zelener. References are at the end of this document. The user could also train the model based on his own datasets. However, training a YOLO model takes a very long time and requires a fairly large dataset of labelled bounding boxes for a large range of target classes.
 
+The input images of the model will be resize to (608,608,3), and then scale up to its origin size as outputs. Red boxes are used to show the positions of objects detected and the possibilities. The maximum numbers of boxes allowed is 13, and the threshold to judge if the model has enough confindence on its result is 0.7. Objects deteced with chance lower than the level will be discarded. iou_threshold is to decide the threshold of overlapping ratio. Objects with higher ratio of overlapping are more likely to be the same object. User can adjust these parameters by himself.
 
+Three different types of images are tested in this model for prediction.
+The first image "test.jpg" contains cars, has a size of (720., 1280.), 300KB
 
+The second image "Checkpoint Charlie.jpg" taken from Checkpoint Charlie, Berlin, has a size of (1080.,1440.), 227KB
 
-Deep "plain" convolutional neural networks don't work in practice because they are hard to train due to gradients exploration. ResNet block with skip connections can help to address this problem thus to make the networks go deeper. Two types of blocks are implemented in this model: the identity block and the convolutional block. Deep Residual Networks are built by stacking these blocks together.
+The third image "The_Nightwatch_by_Rembrandt_Rijksmuseum.jpg", is the famous painting by one of my favourite painters, Rembrandt. Download form Google, has a size of 34.9MB, (12528.,14168.)
 
-The model contains 50 hidden layers. Using a softmax output layer, the models is able to generalizes more than two classes of outputs.
+To test the model on your own images，the use only need change the name with his own image in line 189 and the size of the image in both line 100 and 141 of Object_Detection.py.
 
-The architecture of the model is shown as follows:
-![image](https://github.com/berlintofind/Image-classification-models-with-Deep-Residual-Networks/blob/main/images/resnet_kiank.png)
+#### Note
 
-The input image has a size of (64,64,3). 
-
-For purpose of demonstration, the model is trained for 2 epoches firstly. The model requires several hours of training with the ResNet. So the model will use the pre-trained model instead which is saved as *ResNet50.h5* file. In this way, lots of time is saved. The result of the prediction is saved in the *Result.CSV* file.
-
-You can try to put your image inside for prediction. To test your own sign image, only need to change the file name in line 239.
-In the last, the whole structure of the ResNet is saved in Scalable Vector Graphics (SVG) format as *model.png*.
+Due to the size of the third image, it may take some time to render. The size will increase to 48.2MB.
 
 
 Keep safe and see you soon!
@@ -55,16 +48,17 @@ Keep safe and see you soon!
 ## Results
 
 **Result of prediction of test.jpg** :
+![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/test.jpg)
 
-Found 4 boxes for IMG_5753.jpg
-person 0.72 (302, 1966) (649, 2907)
-person 0.77 (1824, 1839) (2058, 2694)
-person 0.79 (2940, 1816) (3176, 2521)
-person 0.82 (2195, 1793) (2393, 2422)
+Found 3 boxes for test.jpg
+car 0.74 (159, 303) (346, 440)
+car 0.80 (761, 282) (942, 412)
+car 0.89 (367, 300) (745, 648)
 
 **Result of prediction of Checkpoint Charlie.jpg** :
 ![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/Checkpoint%20Charlie.jpg)
 Found 3 boxes for Checkpoint Charlie.jpg
+
 person 0.78 (1050, 648) (1137, 902)
 person 0.78 (651, 657) (738, 958)
 person 0.79 (783, 642) (856, 863)
@@ -72,6 +66,7 @@ person 0.79 (783, 642) (856, 863)
 **Result of prediction of The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg** :
 ![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg)
 Found 3 boxes for The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg
+
 person 0.74 (5250, 5639) (7696, 11528)
 person 0.77 (1826, 6052) (3740, 11528)
 person 0.84 (7567, 6093) (9934, 11528)
@@ -80,4 +75,4 @@ person 0.84 (7567, 6093) (9934, 11528)
 1. [Joseph Redmon, Santosh Divvala, Ross Girshick, Ali Farhadi - You Only Look Once: Unified, Real-Time Object Detection (2015)](https://arxiv.org/abs/1506.02640)
 2. [Joseph Redmon, Ali Farhadi - YOLO9000: Better, Faster, Stronger (2016)](https://arxiv.org/abs/1612.08242)
 3. [Allan Zelener - YAD2K: Yet Another Darknet 2 Keras](https://github.com/allanzelener/YAD2K)
-4. [The official YOLO website (https://pjreddie.com/darknet/yolo/)](https://pjreddie.com/darknet/yolo/)
+4. [The official YOLO website](https://pjreddie.com/darknet/yolo/)
