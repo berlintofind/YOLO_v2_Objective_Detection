@@ -39,11 +39,11 @@ The third image "The_Nightwatch_by_Rembrandt_Rijksmuseum.jpg", is the famous pai
 To test the model on your own images，the use only need change the name with his own image in line 189 and the size of the image in both line 100 and 141 of Object_Detection.py.
 
 #### Note
-
 Due to the size of the third image, it may take some time to render. The size will increase to 48.2MB.
 
 
-Keep safe and see you soon!
+
+**Keep safe and see you soon!
 
 ## Results
 
