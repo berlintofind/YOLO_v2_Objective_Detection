@@ -34,7 +34,7 @@ The first image "test.jpg" contains cars, has a size of (720., 1280.), 300KB
 
 The second image "Checkpoint Charlie.jpg" taken from Checkpoint Charlie, Berlin, has a size of (1080.,1440.), 227KB
 
-The third image "The_Nightwatch_by_Rembrandt_Rijksmuseum.jpg", is the famous painting by one of my favourite painters, Rembrandt. Download form Google, has a size of 34.9MB, (12528.,14168.)
+The third image "The_Nightwatch_by_Rembrandt_Rijksmuseum.jpg", is the famous painting by one of my favourite painters, Rembrandt. Download from Google, has a size of (12528.,14168.),34.9MB
 
 To test the model on your own images，the use only need change the name with his own image in line 189 and the size of the image in both line 100 and 141 of Object_Detection.py.
 
@@ -51,24 +51,33 @@ Keep safe and see you soon!
 ![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/test.jpg)
 
 Found 3 boxes for test.jpg
+
 car 0.74 (159, 303) (346, 440)
+
 car 0.80 (761, 282) (942, 412)
+
 car 0.89 (367, 300) (745, 648)
 
 **Result of prediction of Checkpoint Charlie.jpg** :
 ![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/Checkpoint%20Charlie.jpg)
+
 Found 3 boxes for Checkpoint Charlie.jpg
 
 person 0.78 (1050, 648) (1137, 902)
+
 person 0.78 (651, 657) (738, 958)
+
 person 0.79 (783, 642) (856, 863)
 
 **Result of prediction of The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg** :
 ![image](https://github.com/berlintofind/YOLO_v2_Objective_Detection/blob/master/out/The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg)
+
 Found 3 boxes for The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg
 
 person 0.74 (5250, 5639) (7696, 11528)
+
 person 0.77 (1826, 6052) (3740, 11528)
+
 person 0.84 (7567, 6093) (9934, 11528)
 
 ## Reference
