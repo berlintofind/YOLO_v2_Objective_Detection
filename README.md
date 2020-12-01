@@ -43,7 +43,7 @@ Due to the size of the third image, it may take some time to render. The size wi
 
 
 
-**Keep safe and see you soon!
+**Keep safe and see you soon!**
 
 ## Results
 
